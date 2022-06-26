@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+    postgres:
+        image: postgres
+        container_name: "zeus-postgres"
+        restart: "no"
+        ports:
+            - "5432:5432"
+        expose:
+            - 5432
+        environment:
+            POSTGRES_DB: "zeus"
+            POSTGRES_USER: "zeus"
+            POSTGRES_PASSWORD: "zeus"
+
+        volumes:
+            - postgres-data:/var/lib/postgresql/data/
+
+    redis:
+        image: redis
+        container_name: "zeus-redis"
+        restart: "no"
+        ports:
+            - "6379:6379"
+        expose:
+            - 6379
+        volumes:
+            - redis-data:/data
+
+volumes:
+    postgres-data:
+    redis-data:
